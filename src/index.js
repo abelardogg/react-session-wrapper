@@ -2,11 +2,18 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import SessionContext from './SessionContext';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <SessionContext
+      sessionKey={'tokenId'}
+      logoutRedirect={'/'}
+      
+    >
+      <App />
+    </SessionContext>
   </React.StrictMode>,
   document.getElementById('root')
 );
