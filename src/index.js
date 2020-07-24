@@ -5,12 +5,23 @@ import App from './App';
 import SessionContext from './SessionContext';
 import * as serviceWorker from './serviceWorker';
 
+//initial config
+const loginUrl = process.env.REACT_APP_LOGIN;
+const getTokenUrl = process.env.REACT_APP_GET_TOKEN_URL;
+let headers = new Headers();
+// append your values
+let urlencoded = new URLSearchParams();
+// append your values
+
 ReactDOM.render(
   <React.StrictMode>
     <SessionContext
-      sessionKey={'tokenId'}
-      logoutRedirect={'/'}
-      
+      loginUrl={loginUrl}     // redirect to the login page
+      tokenUrl={getTokenUrl}  // get the jwt with the code 
+      logoutRedirect={'/'}    // redirect when user perform a logout action
+      body={urlencoded}       // request body (like scopes, client id, etc...)
+      headers={headers}       // request headers (like ocntent-tyope)
+      sessionKey={'id_token'} // key to read from storage to keep the session.
     >
       <App />
     </SessionContext>
